@@ -29,6 +29,10 @@ export async function ensureAuthenticated(
         if (!user) {
             throw new AppError("User not found.");
         }
+        // Aqui vamos sobrescrever a tipagem do express
+        request.user = {
+            id: user_id,
+        };
         next();
     } catch {
         throw new AppError("Invalid token.");
