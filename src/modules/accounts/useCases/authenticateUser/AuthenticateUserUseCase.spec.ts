@@ -34,15 +34,15 @@ describe("User's authentication test", () => {
         // console.log(result);
     });
 
-    it("Should not be able to authenticate a non-existent user", async () => {
+    it("Should not be able to authenticate a non-existent user", () => {
         expect(async () => {
-            autheticateUserUseCase.execute({
+            await autheticateUserUseCase.execute({
                 email: "false@rentx.com.br",
                 password: "4321",
             });
         }).rejects.toBeInstanceOf(AppError);
     });
-    it("Should not be able to authenticate an user with incorrect password", async () => {
+    it("Should not be able to authenticate an user with incorrect password", () => {
         expect(async () => {
             const user: ICreateUserDTO = {
                 name: "Antonio Alves",
@@ -51,7 +51,7 @@ describe("User's authentication test", () => {
                 driver_license: "1234123411",
             };
             await createUserUseCase.execute(user);
-            autheticateUserUseCase.execute({
+            await autheticateUserUseCase.execute({
                 email: user.email,
                 password: "asdf.12345",
             });
