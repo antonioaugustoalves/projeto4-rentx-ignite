@@ -14,8 +14,9 @@ import { AppError } from "../../errors/AppError";
 import createConnection from "../typeorm";
 import { router } from "./routes";
 
-const app = express();
 createConnection();
+const app = express();
+
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 app.use(express.json());
 
