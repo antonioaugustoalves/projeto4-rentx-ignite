@@ -4,6 +4,10 @@ import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { ICarsRepository } from "../ICarsRepositoy";
 
 class CarsRepositoryInMemory implements ICarsRepository {
+    async findById(id: string): Promise<Car> {
+        const car = this.cars.find((car) => car.id === id);
+        return car;
+    }
     cars: Car[] = [];
     async create({
         name,
@@ -53,6 +57,10 @@ class CarsRepositoryInMemory implements ICarsRepository {
             return null;
         });
         return all;
+    }
+
+    async list(): Promise<Car[]> {
+        return this.cars;
     }
 }
 
