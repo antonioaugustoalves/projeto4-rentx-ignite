@@ -19,11 +19,11 @@ const listAllCarsController = new ListAllCarsController();
 const createCarSpecificationsController =
     new CreateCarSpecificationsController();
 const uploadCarImagesController = new UploadCarImagesController();
+
 carsRoutes.post(
-    "/images/:id",
+    "/",
     ensureAuthenticated,
     ensureAdmin,
-    uploadImages.array("images"),
     createCarController.handle
 );
 
@@ -38,9 +38,10 @@ carsRoutes.get("/avaliable", listCarsController.handle);
 carsRoutes.get("/", listAllCarsController.handle);
 
 carsRoutes.post(
-    "/images",
+    "/images/:id",
     ensureAuthenticated,
     ensureAdmin,
+    uploadImages.array("images"),
     uploadCarImagesController.handle
 );
 

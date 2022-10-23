@@ -17,6 +17,7 @@ class UploadCarImagesUseCase {
         images_name.map(async (image) => {
             await this.carImagesRepository.create(car_id, image);
         });
+        console.log(images_name);
     }
 }
 

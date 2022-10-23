@@ -15,6 +15,7 @@ class UploadCarImagesController {
         );
         const images_name = images.map((file) => file.filename);
         await uploadCarImagesUseCase.execute({ car_id: id, images_name });
+        console.log(images_name);
         return response.status(201).send();
     }
 }
